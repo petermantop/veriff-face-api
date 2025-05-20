@@ -24,8 +24,6 @@ class FaceEncoding(BaseModel):
     encoding: List[float] = Field(..., description="128-dimensional face encoding vector")
 
 class Image(ImageBase):
-    id: int
-    file_path: str
     face_encodings: Optional[List[List[float]]] = None
     
     class Config:
