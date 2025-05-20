@@ -1,6 +1,6 @@
 import httpx
 import os
-from typing import List, Dict, Any, Optional
+from typing import List, Any, Optional
 import logging
 
 logger = logging.getLogger(__name__)
@@ -11,9 +11,16 @@ class FaceEncodingClient:
     def __init__(self, base_url: str = "http://localhost:8000"):
         self.base_url = base_url
         
-    async def get_face_encodings(self, image_path: str) -> Optional[List[Dict[str, Any]]]:
+    async def get_face_encodings(self, image_path: str) -> Optional[List[List[float]]]:
         """
         Send an image to the Face Encoding service and get back the face encodings.
+        
+        Args:
+            image_path: Path to the image file
+            
+        Returns:
+            List of face encodings (128-dimensional vectors) or None if the request fails.
+            Each face encoding is a list of 128 float values.
         """
         if not os.path.exists(image_path):
             logger.error(f"Image file not found: {image_path}")
@@ -27,13 +34,16 @@ class FaceEncodingClient:
                 # Make the request to the Face Encoding service
                 async with httpx.AsyncClient() as client:
                     response = await client.post(
-                        f"{self.base_url}/encode",
+                        f"{self.base_url}/v1/selfie",
                         files=files,
                         timeout=30.0  # 30 seconds timeout
                     )
                     
                     if response.status_code == 200:
                         return response.json()
+                    elif response.status_code == 400:
+                        logger.error("More than 5 faces found in the image")
+                        return None
                     else:
                         logger.error(f"Error from Face Encoding service: {response.status_code} - {response.text}")
                         return None

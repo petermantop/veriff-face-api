@@ -1,5 +1,5 @@
-from typing import List, Dict, Any, Optional
-from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
+from pydantic import BaseModel, Field
 
 class ContainerBase(BaseModel):
     name: str
@@ -19,10 +19,14 @@ class ImageBase(BaseModel):
 class ImageCreate(ImageBase):
     pass
 
+class FaceEncoding(BaseModel):
+    """A 128-dimensional face encoding vector."""
+    encoding: List[float] = Field(..., description="128-dimensional face encoding vector")
+
 class Image(ImageBase):
     id: int
     file_path: str
-    face_encodings: Optional[List[Dict[str, Any]]] = None
+    face_encodings: Optional[List[List[float]]] = None
     
     class Config:
         orm_mode = True
