@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException, UploadFile
 from app import models, schemas
 from app.face_encoding_client import FaceEncodingClient
+from app.config import UPLOAD_DIR
 from typing import List
 
-# Directory to store uploaded images
-UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+# Create the upload directory if it doesn't exist
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # Initialize the Face Encoding client

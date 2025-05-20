@@ -1,14 +1,15 @@
 import httpx
 import os
-from typing import List, Any, Optional
+from typing import List, Optional
 import logging
+from app.config import FACE_ENCODING_SERVICE_URL
 
 logger = logging.getLogger(__name__)
 
 class FaceEncodingClient:
     """Client for interacting with the Face Encoding service."""
     
-    def __init__(self, base_url: str = "http://localhost:8000"):
+    def __init__(self, base_url: str = FACE_ENCODING_SERVICE_URL):
         self.base_url = base_url
         
     async def get_face_encodings(self, image_path: str) -> Optional[List[List[float]]]:
