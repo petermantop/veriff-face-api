@@ -1,12 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from app.config import DATABASE_URL
 
-
-# Construct the SQLAlchemy URL
-DATABASE_URL = "sqlite:////home/kaspar/Documents/veriff-face-api/test.db"
+database = f"sqlite:///{DATABASE_URL}"
 
 engine = create_engine(
-    DATABASE_URL,
+    database,
     connect_args={"check_same_thread": False},  # Required for multithreading
     poolclass=None,  # Explicitly disables connection pooling
 )
