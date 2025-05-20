@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "1dd67cdf-b5b2-47cf-97d1-8c1ec363668e",
+		"name": "Veriff Face Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43692723",
+		"_collection_link": "https://kasparkruus.postman.co/workspace/Kaspar-Kruus's-Workspace~e60df3ab-acb6-4f01-8c8d-d56edaa56900/collection/43692723-1dd67cdf-b5b2-47cf-97d1-8c1ec363668e?action=share&source=collection_link&creator=43692723"
+	},
+	"item": [
+		{
+			"name": "create a container",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test container1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/containers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"containers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1f035925-5c6e-41c0-b3a4-26fd669cd6f9"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/containers/1/images/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"containers",
+						"1",
+						"images",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verification summary",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": [
+								"/home/kaspar/Downloads/386b13f0-121f-4d54-82be-805671712213.jpg",
+								"/home/kaspar/Downloads/386b13f0-121f-4d54-82be-805671712213.jpg"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/containers/2/summary/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"containers",
+						"2",
+						"summary",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -16,7 +16,8 @@ The application can be configured using environment variables:
 You can set these variables in a `.env` file in the project root directory. See `.env.example` for an example.
 
 ## API Endpoints
-
+Postman Collection
+A Postman collection(`Veriff Face Api.postman_collection.json`) has been added to facilitate testing the API endpoints. You can import the collection into Postman and use it to quickly test creating containers, uploading images, and fetching verification summaries.
 ### Create a Verification Container
 ```
 POST /containers/
