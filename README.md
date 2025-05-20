@@ -1,1 +1,0 @@
-# veriff-face-api
